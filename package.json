@@ -1,0 +1,23 @@
+{
+  "name": "fragments-ui",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Fragments UI testing web app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve . -l 1234",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Farbod-Moayeri/CCP555-2025F-NSC-Farbod-Moayeri-134395227-fragments-ui.git"
+  },
+  "author": "Farbod Moayeri",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "oidc-client-ts": "^3.3.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.5"
+  }
+}
