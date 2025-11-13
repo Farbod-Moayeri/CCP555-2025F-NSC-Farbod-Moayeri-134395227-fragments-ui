@@ -16,5 +16,32 @@
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
     </section>
+
+      <div style="margin-top: 1em;">
+        <h3>Login with Basic Auth (API only)</h3>
+        <label for="email">Email:</label>
+        <input id="email" type="email" placeholder="user@email.com" />
+
+        <label for="password">Password:</label>
+        <input id="password" type="password" placeholder="password" />
+
+        <button id="basic-login">Login (Basic Auth)</button>
+      </div>
+
+      <div id="fragments-section" hidden>
+        <h3>Your Fragments</h3>
+        <label for="type">Type:</label>
+        <select id="type">
+          <option value="text/plain">Text</option>
+          <option value="text/markdown">Markdown</option>
+          <option value="application/json">JSON</option>
+        </select>
+        <br />
+        <textarea id="content" rows="4" cols="50" placeholder="Enter content..."></textarea>
+        <br />
+        <button id="create">Create Fragment</button>
+        <ul id="fragments-list"></ul>
+      </div>
+
   </body>
 </html>
