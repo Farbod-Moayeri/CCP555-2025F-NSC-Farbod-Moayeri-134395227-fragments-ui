@@ -3,20 +3,67 @@
   <head>
     <meta charset="utf-8" />
     <title>Fragments UI</title>
-    <link rel="stylesheet" href="[URL]"/>
+    <link rel="stylesheet" href="[URL]" />
     <script type="module" src="src/app.js"></script>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        margin: 2rem;
+      }
+      button {
+        margin: 0.25rem;
+      }
+      #fragments-list {
+        list-style: none;
+        padding-left: 0;
+      }
+      .fragment-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+      .fragment-item span {
+        flex: 1;
+        word-break: break-all;
+      }
+      #fragment-detail {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      #detail-preview {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        border: 1px dashed #aaa;
+        min-height: 3rem;
+        max-height: 400px;
+        overflow: auto;
+        background: #fafafa;
+      }
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
     <h1>Fragments UI</h1>
+
+    <!-- Cognito-based login (top nav) -->
     <section>
       <nav>
         <button id="login">Login</button>
       </nav>
     </section>
+
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
     </section>
 
+    <!-- Basic Auth login + Fragment management -->
+    <section>
       <div style="margin-top: 1em;">
         <h3>Login with Basic Auth (API only)</h3>
         <label for="email">Email:</label>
@@ -30,18 +77,59 @@
 
       <div id="fragments-section" hidden>
         <h3>Your Fragments</h3>
-        <label for="type">Type:</label>
-        <select id="type">
-          <option value="text/plain">Text</option>
-          <option value="text/markdown">Markdown</option>
-          <option value="application/json">JSON</option>
-        </select>
-        <br />
-        <textarea id="content" rows="4" cols="50" placeholder="Enter content..."></textarea>
-        <br />
-        <button id="create">Create Fragment</button>
+
+        <div style="margin-bottom: 1em;">
+          <label for="type">Type:</label>
+          <select id="type">
+            <option value="text/plain">Text</option>
+            <option value="text/markdown">Markdown</option>
+            <option value="application/json">JSON</option>
+            <option value="image/png">PNG Image</option>
+            <option value="image/jpeg">JPEG Image</option>
+          </select>
+
+          <br />
+          <textarea
+            id="content"
+            rows="4"
+            cols="50"
+            placeholder="Enter content..."
+          ></textarea>
+
+          <input
+            id="image-file"
+            type="file"
+            accept="image/png,image/jpeg"
+            style="display:none; margin-top:0.5rem;"
+          />
+
+          <br />
+          <button id="create">Create Fragment</button>
+        </div>
+
+        <h4>Fragment List</h4>
         <ul id="fragments-list"></ul>
       </div>
 
+      <!-- Fragment detail / view / update / delete / convert -->
+      <div id="fragment-detail" hidden>
+        <h3>Fragment Detail</h3>
+        <p><strong>ID:</strong> <span id="detail-id"></span></p>
+        <p><strong>Type:</strong> <span id="detail-type"></span></p>
+
+        <label for="detail-content">Content (editable for text / markdown / JSON):</label>
+        <textarea id="detail-content" rows="6" cols="60"></textarea>
+
+        <div style="margin-top: 0.5rem;">
+          <button id="update-fragment">Update</button>
+          <button id="delete-fragment">Delete</button>
+          <button id="convert-markdown-html" hidden>View as HTML</button>
+          <button id="convert-image-jpeg" hidden>View as JPEG</button>
+        </div>
+
+        <h4>Preview</h4>
+        <div id="detail-preview"></div>
+      </div>
+    </section>
   </body>
 </html>
